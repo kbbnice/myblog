@@ -1,0 +1,199 @@
+html, body, div, ul, li, img, span, button, audio, p, input {
+    margin: 0;
+    padding: 0;
+}
+.clear{
+    clear: both;
+}
+.music{
+    background-color: rgba(168, 188, 255, 0.4);
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    min-width: 750px;
+}
+li{
+    list-style: none;
+}
+.music>ul{
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+.music>ul>li{
+    float: left;
+    margin-left: 10px;
+    height: 50px;
+}
+
+.music .player-msg{
+    padding: 0 1em;
+    /* background-color: red; */
+    width: 8em;
+    text-align:center;
+    font-size: 12px;
+    line-height: 23px;
+}
+.music .player-msg p {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    color: grey;
+}
+.music .player-icon{
+    width: 50px;
+    height: 50px;
+}
+.music .player-icon img {
+    width: 50px;
+    height: 50px;
+}
+.music .player-icon .player-icon-start{
+    width: 50px;
+    height: 50px;
+}
+.music .player-icon .player-icon-pause{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 1000;
+    cursor: url("../cursor/pointer.cur"), pointer;
+}
+.music .player-btns {
+    width: 220px;
+}
+.music .player-btns button {
+    margin: 0 3px;
+    float: left;
+    height: 50px;
+    width: 48px;
+    border: none;
+    outline: none;
+    cursor: url("../cursor/pointer.cur"), pointer;
+}
+.music .player-btns button:hover {
+    transform: scale(1.1);
+}
+.music .player-btns #btnGoUp{
+    background: url("../imgs/music-icon-go-down.png")
+}
+.music .player-btns #btnStart{
+    background: url("../imgs/music-icon-pause1.png")
+}
+.music .player-btns #btnReset{
+    background: url("../imgs/music-icon-reset1.png")
+}
+.music .player-btns #btnGoDown{
+    background: url("../imgs/music-icon-go-up.png")
+}
+
+/* 音量条 */
+.music .volume {
+    font-size: 10px;
+    line-height: 50px;
+}
+.music .volume .volume-no {
+    display: inline-block;
+    width: 15px;
+    height: 18px;
+    padding-right: 10px;
+    cursor: url("../cursor/pointer.cur"), pointer;
+    background: url("../imgs/volume-icon.png") no-repeat center;
+}
+.music .volume .volume-no:hover {
+    transform: scale(1.1);
+}
+/* .music .volume span:active{
+    background: url("../imgs/volume-icon-no.png") no-repeat center;
+} */
+.music .volume input {
+    outline: none;
+    border: 1px solid grey;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    cursor: url("../cursor/pointer.cur"), pointer;
+    
+}
+.music .volume input:active {
+    transform: scale(1.1);
+}
+.music .volume .volume-line{
+    display: inline-block;
+    background-color: #fff;
+    height: 4px;
+    width: 100px;
+    position: relative;
+    top: -3px;
+    margin: 0 5px;
+}
+.music .volume .volume-down{
+    background: url("../imgs/volume-icon-down.png");
+}
+.music .volume .volume-up{
+    background: url("../imgs/volume-icon-up.png");
+}
+.music .volume .volume-line .volume-pot{
+    width: 50%;
+    height: 100%;
+    background-color: grey;
+    
+}
+
+.music .music-download{
+    padding-left: 8%;
+    float: left;
+}
+
+
+/* 进度条 */
+/* .music .player-process .pro-line{
+    margin: 0 20px;
+    background-color: #fff;
+    position: relative;
+    top: 24px;
+    height: 4px;
+    width: 400px;
+}
+.music .player-process .pot{
+    border: 1px solid black;
+    width: 10px;
+    height: 10px;
+    position: relative;
+    top: -11px;
+    background-color:grey;
+} */
+
+
+
+
+.player-icon-start{
+    animation: myAudio 8s linear infinite;
+}
+.player-icon-reset {
+    animation: myAudioRe 8s linear infinite;
+}
+@keyframes myAudio
+{
+    
+    from{
+        transform: rotate(0deg);
+    }
+    
+    to{
+        transform: rotate(360deg);
+    }
+}
+@keyframes myAudioRe
+{
+    
+    from{
+        transform: rotate(0deg);
+    }
+    
+    to{
+        transform: rotate(360deg);
+    }
+}

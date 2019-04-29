@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人简历</title>
+    <script src="js/vue.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <style>
+        html, body, div, img, p, b, ul, li, h1, h2, h3, h4, h5, h6{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        body{
+            background-color: rgb(246, 251, 255);
+        }
+        .clear{
+            clear: both;
+        }
+        .line{
+            width: 93%;
+            margin: 20px auto;
+            border-bottom: 1px solid gainsboro;
+        }
+        h2{
+            text-align: center;
+            letter-spacing: 1em;
+            min-width: 750px;
+        }
+        .app{
+            width: 80%;
+            margin: 20px auto;
+            /* border: 1px solid goldenrod; */
+            padding: 5px;
+            min-width: 750px;
+        }
+        .header{
+            width: 100%;
+            height: 160px;
+        }
+        .header .photo{
+            margin: 10px 0 0 10px;
+            float: left;
+            width: 15%;
+            max-width: 110px;
+            height: 100%;
+        } 
+        .header .photo img{
+            width: 100%;
+            height: 85%;
+        }
+        .header .info{
+            margin-top: 10px;
+            float: right;
+            width: 75%;
+            height: 100%;
+        }
+        .header .info p{
+            position: relative;
+            display: inline-block;
+            width: 45%;
+            height: 25%;
+            letter-spacing: 3px;
+        }
+
+        /* connect */
+        .con-me{
+            width: 100%;
+            height: 20%;
+        }
+        .con-me-item{
+            position: relative;
+            display: inline-block;
+            width: 30%;
+            font-size: 13px;
+            line-height: 15px;
+            height: 100%;
+            cursor: pointer;
+        }
+        .con-me-item .QR-code{
+            position: absolute;
+            top: 30px;
+            display: none
+        }
+        .wechat-me{
+            color: blue;
+        }
+        .wechat-me:hover .QR-code {
+            display: block;
+        }
+
+        /* content */
+        .content {
+            border-bottom: 1px solid gainsboro;
+            padding-bottom: 30px;
+        }
+        .content .skills{
+            float: left;
+            width: 30%;
+            min-width: 230px;
+            max-width: 250px;
+            font-family: "幼圆";
+            padding-right: 1%;
+        }
+        .content .skills h4{
+            line-height: 40px;
+            text-align: center;
+        }
+        .content .skills ul li{
+            list-style: url("imgs/list-style-heart.png");
+            font-size: 14px;
+            line-height: 30px;
+            margin-left: 2em;
+            margin-top: 12px;
+        }
+
+        .content .experience{
+            float: right;
+            width: 68%;
+            height: 1000px;
+            /* background-color: aqua; */
+            font-family: "幼圆";
+            border-left: 1px solid gainsboro;
+
+        }
+        .content .experience>ul>li {
+            margin-left: 1%;
+            width: 45%;
+            display: inline-block;
+        }
+        .content .experience h4{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            line-height: 40px;
+            cursor: url("cursor/pointer.cur"), pointer;
+
+        }
+        .content .experience .arrow {
+            margin-top: -20px;
+        }
+        .content .experience .arrow>ul>li{
+            width: 47%;
+            display: inline-block;
+            text-align: center;
+        }
+        .content .experience .experience-items>li {
+            width: 90%;
+            margin-left: 2em;
+            line-height: 30px;
+            list-style: url("imgs/list-style-heart.png");
+        }
+        .content .experience h5{
+            line-height: 30px;
+        }
+        .content .experience p {
+            font-size: 14px;
+            line-height: 30px;
+        }
+        .content .experience .experience-items {
+            margin-left: 3%;
+            width: 95%;
+        }
+        .content .experience .project ul li{
+            font-size: 14px;
+            margin-left: 2em;
+            list-style: circle;
+        }
+        
+        footer{
+            text-align: center;
+            padding-bottom: 30px;
+        }
+        footer p {
+            line-height: 30px;
+            font-size: 12px;
+            color: grey;
+        }
+
+        /* vue */
+        .ifPrint{
+            background-color:rgba(212, 211, 211, 0.767);
+        }
+    </style>
+</head>
+<body>
+    <h2>个人简历</h2>
+    <div class="line"></div>
+    <div class="app" id="app">
+        <div class="header">
+            <div class="photo">
+                <img src="imgs/photo.jpg" alt="">
+            </div>
+            <div class="info">
+                <p><b>姓名： </b>柯丽红</p>
+                <p><b>出生年月：</b>1993.09</p>
+                <p><b>性别：</b>女</p>
+                <p><b>毕业院校：</b>福建工程学院</p>
+                <p><b>学历：</b>法学本科</p>
+                <p class="phone-num" title="由于个人隐私保护，具体电话请在招聘平台查看，谢谢！"><b>电话：</b>152xxxx0430</p>
+                <div class="conctions">
+                        <div class="con-me">
+                            <div class="mail-me con-me-item">
+                                邮箱：<a href="mailto:kelihong@163.com" class="mailto">ke_lihong@163.com</a>
+                            </div>
+                            <div class="qq-me con-me-item">
+                                QQ:  <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=977690023">
+                                    <img border="0" src="imgs/qq.png" alt="QQ图标" title="点击加我好友">
+                                    977690023
+                                </a>                               
+                            </div>
+                            <div class="wechat-me con-me-item">
+                                    <img src="imgs/wechat.png" alt="微信">
+                                    <img src="imgs/my-wechat.png" class="QR-code" alt="微信二维码">
+                                    kelihong520
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="line"></div>
+        <div class="content" id="content">
+            <div class="skills">
+                <h4>技能</h4>
+                <div class="line"></div>
+                <ul>
+                    <li v-for="item in skillsArr">
+                        {{ item }}
+                    </li>
+                    
+                   
+                </ul>
+            </div>
+            <div class="experience" id="experience">
+                <ul>
+                    <li>
+                        <h4 :class="{ifPrint:istrue}" @click="expChange">项目经验</h4>
+                    </li>
+                        <span style="border-right: 1px solid gainsboro"></span>
+                    <li>
+                        <h4 :class="{ifPrint: !istrue}" @click="workChange">工作经历</h4>
+                    </li>
+                </ul>
+                <div class="line"></div>
+                <div class="arrow">
+                    <ul>
+                        <li style="float: left" v-show="istrue">↓</li>
+                        <li style="float: right" v-show="!istrue">↓</li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                <ul class="exp-items experience-items" v-show="istrue" v-for="project in projects">
+                    <li>
+                        <div class="project">
+                            
+                            <h5>{{ project.name }}</h5>
+                            <p class="pro-tool">{{ project.tools }}</p>
+                            <p class="pro-details">项目描述：</p>
+                            <ul>
+                                <li v-for="detail in project.details">
+                                    {{ detail }}
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="experience-items work-items " v-show="!istrue" v-for="expItem in experience">
+                    <li>
+                        <div class="project" >
+                            
+                            <h5>工作单位：{{ expItem.name }}</h5>
+                            <p>工作时间：{{ expItem.time }}</p>
+                            <p>工作内容：</p>
+                            <ul>
+                                <li v-for="expDetail in expItem.details">
+                                    {{ expDetail }}.
+                                </li> 
+                            </ul>
+                            <p>离职原因：</p>
+                            <ul v-for="reason in expItem.reasons">
+                                <li>
+                                    {{ reason }}.
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <div class="line"></div>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        
+        <footer>
+            <p>@柯宝宝智商感人&nbsp;&nbsp;创建于：2019年4月14日&nbsp;14:21</p>
+            <p>本页简单展示用vue框架构建页面</p>
+        </footer>
+    </div>
+
+
+    
+    <script>
+        
+        new Vue({
+            el: "#content",
+            data: {
+                istrue: true,
+                skillsArr: [
+                    "photoshop并会简单绘图(本网站90%图片均为自己绘图或者制作）",
+                    "根据ui设计图利用 DIV + CSS布局，熟练手写符合W3C标准的代码",
+                    "熟练使用JavaScript，能熟练运用jQuery框架实现网页常用特效，了解面向对象编程思想",
+                    "熟练应用dom、xml、json等相关技术",
+                    "了解vue全家桶的部分成员，并熟悉github等团队协作开发工具",
+                    "具备较强自学能力，能熟练阅读适用中、英文API",
+                    "会使用原生js或者各种api封装可复用插件",
+                    "了解ajax同步、异步请求、跨域等",
+                    "了解http协议、缓存技术等",
+                    "了解php、mySQL，会简单进行前后端数据交互"
+                    ],
+                projects: [
+                    {
+                        name: "个人博客网站", 
+                        tools: "使用工具：Visual Studio Code、Cmder、photoshop、phpStudy、Hbuilder、 webstorm等",
+                        details: [
+                            "运用div + css整体布局，加入html5新标签audio等，并运用css动画，实现网页部分动画效果",
+                            "用原生js手写音乐播放器插件",
+                            "用jQuery手写简单博客插件",
+                            "运用jQuery框架实现网页导航栏",
+                            "运用vue完成部分页面",
+                            "调用QQ加好友、调用邮箱发邮件等功能，方便hr与本人快速沟通",
+                            "应用博客插件，并结合php实现博客的简单功能"
+                        ]
+                    }
+                ],
+                experience: [
+                    {
+                        name: "厦门跃诚进出口有限公司",
+                        time: "2018.06 - 至今",
+                        details: [
+                            "为公司开发数据录入导出的项目，方便同事间工作内容的交互",
+                            "运用excel的各个公式制作表格。(工作过程中巩固了vb相关知识)",
+                            "负责公司软硬件的操作指导、简单维修",
+                            "负责进出口贸易的海关报关、清关、报关等单证制作",
+                            "与客户沟通业务相关问题并解决"
+                        ],
+                        reasons: [
+                            "用最努力奋斗的青春，做自己最喜欢的事情——码代码",
+                            "青春是用来加班和钻研新知识的",
+                            "贸易老了也能做，但是码代码是青春的行业",
+                            "总结： 不想辜负自己的青春"
+                        ]
+                    },
+                    {
+                            name: "法院",
+                            time: "2016.09 - 2018.06",
+                            details:[
+                                "协助审判员进行案件审理的各项工作",
+                                "负责庭审记录",
+                                "负责案件的文书送达、归档"
+                            ],
+                            reasons: [
+                                "不安于体制内“幸福”的生活",
+                                "为了追寻自己真正喜欢的生活方式",
+                                "向往北上广深的忙碌和丰富的生活"
+                            ]
+                        }
+                ]
+            },
+            methods: {
+                //微信二维码：
+                    expChange(){
+                    if(this.istrue === false){
+                        this.istrue = true
+                    }
+                },  
+                workChange(){
+                    if(this.istrue === true){
+                        this.istrue = false
+                    }
+                }
+              
+            }
+        })
+
+    </script>
+</body>
+</html>

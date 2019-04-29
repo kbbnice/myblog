@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <textarea name="txt"  v-model='message' cols="30" rows="10"></textarea>
+        <br />
+        {{ message }}
+    </div>
+    <div id="box">
+        {{ message }}
+    </div>
+
+
+    <script>
+    
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: '大秦是猪'
+        }
+    })
+
+    var box = new Vue({
+        el: '#box',
+        data: {
+            message: '柯宝宝最可爱'
+        }
+    })
+
+vm.$watch('a', function (newValue, oldValue) {
+    console.log();
+})
+
+    </script>
+
+</body>
+</html>
