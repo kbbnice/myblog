@@ -26,14 +26,14 @@ function playerDefult(){
             name: "云烟成雨", 
             author: "房东的猫", 
             musicSrc: "music/yycy.mp3", 
-            pictureSrc:"imgs/wechat.png", 
+            pictureSrc:"imgs/yycy.png", 
             downloadName: "云烟成雨"
         },
         {
             name: "往后余生", 
             author: "马良", 
             musicSrc: "music/whys.mp3", 
-            pictureSrc:"imgs/vue.png", 
+            pictureSrc:"imgs/yycy.png", 
             downloadName: "往后余生"
         }
     ]
@@ -42,15 +42,16 @@ function playerDefult(){
 
     player.volume = volumeValHis;
     function musicDefult(){
-        player.src                  = musicList[0].musicSrc;
-        musicName.innerHTML         = "歌曲名：" + musicList[0].name + " ";
-        musicAuthor.innerHTML       = " -- " + musicList[0].author + " ";
-        downloadLink.href           = musicList[0].musicSrc;
-        downloadLink.download       = musicList[0].downloadName;
-        player.pause();
-        btnStart.style.background   = "url('imgs/music-icon-play1.png')";
-        playerIconStart.src         = musicList[0].pictureSrc;
-        playerIconPause.src         = "imgs/music-icon-play.png";
+        player.src                                  = musicList[0].musicSrc;
+        musicName.innerHTML                         = "歌曲名：" + musicList[0].name + " ";
+        musicAuthor.innerHTML                       = " -- " + musicList[0].author + " ";
+        downloadLink.href                           = musicList[0].musicSrc;
+        downloadLink.download                       = musicList[0].downloadName;
+        player.pause();             
+        btnStart.style.background                   = "url('imgs/music-icon-play1.png')";
+        playerIconStart.src                         = musicList[0].pictureSrc;
+        playerIconPause.src                         = "imgs/music-icon-play.png";
+        playerIconStart.style.animationPlayState    = "paused"
     }
     
     musicDefult();
